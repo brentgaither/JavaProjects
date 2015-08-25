@@ -1,0 +1,146 @@
+package colorwindow;
+
+// Brent Gaither 
+// 5/13/2014
+
+import javax.swing.*;       // Needed for Swing classes
+import java.awt.*;          // Needed for Color class
+import java.awt.event.*;    // Needed for event listener interface
+
+/** ****************************************************************
+                   ColorWindow Class Declaration
+   This class demonstrates how to set the background color of
+   a panel and the foreground color of a label.
+ ******************************************************************/
+
+public class ColorWindow extends JFrame
+{
+   private JLabel messageLabel;            // To display a message
+   private JButton redButton;              // Changes color to red
+   private JButton blueButton;             // Changes color to blue
+   private JButton yellowButton;           // Changes color to yellow
+   private JPanel panel;                   // A panel to hold components
+   private final int WINDOW_WIDTH = 240;   // Window width
+   private final int WINDOW_HEIGHT = 125;  // Window height
+
+   // ******** Constructor *********
+   public ColorWindow()
+   {
+      // Set the title bar text.
+      setTitle("Color Buttons Demo");
+
+      // Set the size of the window.
+      setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
+
+      // Specify an action for the close button.
+      setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+      // Create a label.
+      messageLabel = new JLabel("Click a button to " +
+                                "select a color.");
+
+      // Create the three buttons.
+      redButton = new JButton("Red");
+      blueButton = new JButton("Blue");
+      yellowButton = new JButton("Yellow");
+
+      // Register an event listener with all 3 buttons.
+     /* redButton.addActionListener(new RedButtonListener());
+      blueButton.addActionListener(new BlueButtonListener());
+      yellowButton.addActionListener(new YellowButtonListener());*/
+      redButton.addActionListener(new ButtonListener());
+      blueButton.addActionListener(new ButtonListener());
+      yellowButton.addActionListener(new ButtonListener());
+      // Create a panel and add the components to it.
+      panel = new JPanel();
+      panel.add(messageLabel);
+      panel.add(redButton);
+      panel.add(blueButton);
+      panel.add(yellowButton);
+
+      // Add the panel to the content pane.
+      add(panel);
+
+      // Display the window.
+      setVisible(true);
+   }
+   
+   /* *************** RedButtonListener Class **********
+      Private inner class that handles the event when
+      the user clicks the Red button.
+    ****************************************************/
+   private class RedButtonListener implements ActionListener
+   {
+      public void actionPerformed(ActionEvent e)
+      {
+         // Set the panel's background to red.
+         panel.setBackground(Color.red);
+
+         // Set the label's text to blue.
+         messageLabel.setForeground(Color.blue);
+      }
+   }
+
+   /* *************** BlueButtonListener Class **********
+      Private inner class that handles the event when
+      the user clicks the Blue button.
+    ****************************************************/
+   private class BlueButtonListener implements ActionListener
+   {
+      public void actionPerformed(ActionEvent e)
+      {
+         // Set the panel's background to blue.
+         panel.setBackground(Color.blue);
+
+         // Set the label's text to yellow.
+         messageLabel.setForeground(Color.yellow);
+      }
+   }
+
+   /* *************** YellowButtonListener Class **********
+      Private inner class that handles the event when
+      the user clicks the Yellow button.
+    ****************************************************/
+   private class YellowButtonListener implements ActionListener
+   {
+      public void actionPerformed(ActionEvent e)
+      {
+         // Set the panel's background to yellow.
+         panel.setBackground(Color.yellow);
+
+         // Set the label's text to black.
+         messageLabel.setForeground(Color.black);
+      }
+   }
+    private class ButtonListener implements ActionListener
+   {
+      public void actionPerformed(ActionEvent e)
+      {
+          String actionCommand = e.getActionCommand();
+          if (actionCommand.equals("Red"))
+          {
+         // Set the panel's background to red.
+         panel.setBackground(Color.red);
+
+         // Set the label's text to blue.
+         messageLabel.setForeground(Color.blue);
+          }
+          else if(actionCommand.equals("Blue"))
+          {
+          // Set the panel's background to blue.
+         panel.setBackground(Color.blue);
+
+         // Set the label's text to yellow.
+         messageLabel.setForeground(Color.yellow);
+          }
+         else if(actionCommand.equals("Yellow"))
+         {
+           // Set the panel's background to yellow.
+         panel.setBackground(Color.yellow);
+
+         // Set the label's text to black.
+         messageLabel.setForeground(Color.black);
+         }
+      }
+   }
+}
